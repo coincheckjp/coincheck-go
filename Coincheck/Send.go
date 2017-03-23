@@ -11,5 +11,5 @@ func (a Send) create(param string) string {
 
 // You Get Send history
 func (a Send) all(param string) string {
-	return a.client.Request("GET", "api/send_money", "")
+	return a.client.Request("GET", "api/send_money", param)
 }

@@ -10,8 +10,8 @@ func (a Withdraw) create(param string) string {
 }
 
 // Transfer Balance from Leverage.
-func (a Withdraw) all(param string) string {
-	return a.client.Request("GET", "api/withdraws", param)
+func (a Withdraw) all() string {
+	return a.client.Request("GET", "api/withdraws", "")
 }
 
 // Transfer Balance from Leverage.

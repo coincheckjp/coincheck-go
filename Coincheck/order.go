@@ -15,7 +15,7 @@ func (a Order) cancel(id string) string {
 }
 
 // List charges filtered by params
-func (a Order) opens(id string) string {
+func (a Order) opens() string {
 	return a.client.Request("GET", "api/exchange/orders/opens", "")
 }
 

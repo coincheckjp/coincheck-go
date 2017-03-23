@@ -17,6 +17,16 @@ type CoinCheck struct {
 	secretKey string
 	account Account
 	bank_account BankAccount
+	borrow Borrow
+	deposit Deposit
+	leverage Leverage
+	order Order
+	order_book OrderBook
+	send Send
+	ticker Ticker
+	trade Trade
+	transfer Transfer
+	withdraw Withdraw
 }
 
 func (c CoinCheck) NewClient(accessKey string, secretKey string) CoinCheck{
@@ -24,10 +34,24 @@ func (c CoinCheck) NewClient(accessKey string, secretKey string) CoinCheck{
 	c.secretKey = secretKey
 	c.account = Account{&c}
 	c.bank_account = BankAccount{&c}
+	c.borrow = Borrow{&c}
+	c.deposit = Deposit{&c}
+	c.leverage = Leverage{&c}
+	c.order = Order{&c}
+	c.order_book = OrderBook{&c}
+	c.send = Send{&c}
+	c.ticker = Ticker{&c}
+	c.trade = Trade{&c}
+	c.transfer = Transfer{&c}
+	c.withdraw = Withdraw{&c}
 	return c
 }
 
 func (c CoinCheck) Request(method string, path string, param string) string {
+	if param != "" && method == "GET" {
+		path = path + "?" + param
+		param = ""
+	}
 	url := "https://coincheck.jp/" + path
 	nonce := strconv.FormatInt(CreateNonce(), 10)
 	message := nonce + url + param
