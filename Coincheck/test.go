@@ -1,11 +1,7 @@
-# coincheck-go
+package main
 
-# Install
-Go to CoinCheck folder and run this command ```go run *.go```
-
-# API
-```
-  client := new(CoinCheck).NewClient("CTBjkbYihKmT-IHR", "DmkP3ChVjOjqieaX-jFnU4XxpSlSgT3M")
+func main() {
+	client := new(CoinCheck).NewClient("CTBjkbYihKmT-IHR", "DmkP3ChVjOjqieaX-jFnU4XxpSlSgT3M")
 	/** Public API */
 	client.ticker.all()
 	client.trade.all()
@@ -66,4 +62,4 @@ Go to CoinCheck folder and run this command ```go run *.go```
 	client.transfer.to_leverage(`{"amount":"100","currency":"JPY"}`)
 	// レバレッジアカウントからの振替
 	client.transfer.from_leverage(`{"amount":"100","currency":"JPY"}`)
-```
+}
