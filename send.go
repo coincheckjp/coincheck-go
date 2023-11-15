@@ -1,7 +1,7 @@
 package coincheck
 
 type Send struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Sending Bitcoin to specified Bitcoin addres.

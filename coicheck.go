@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-type CoinCheck struct {
+type Client struct {
 	accessKey    string
 	secretKey    string
 	account      Account
@@ -29,25 +29,14 @@ type CoinCheck struct {
 	withdraw     Withdraw
 }
 
-func (c CoinCheck) NewClient(accessKey string, secretKey string) CoinCheck {
+func NewClient(accessKey string, secretKey string) *Client {
+	c := new(Client)
 	c.accessKey = accessKey
 	c.secretKey = secretKey
-	c.account = Account{&c}
-	c.bank_account = BankAccount{&c}
-	c.borrow = Borrow{&c}
-	c.deposit = Deposit{&c}
-	c.leverage = Leverage{&c}
-	c.order = Order{&c}
-	c.order_book = OrderBook{&c}
-	c.send = Send{&c}
-	c.ticker = Ticker{&c}
-	c.trade = Trade{&c}
-	c.transfer = Transfer{&c}
-	c.withdraw = Withdraw{&c}
 	return c
 }
 
-func (c CoinCheck) Request(method string, path string, param string) string {
+func (c *Client) Request(method string, path string, param string) string {
 	if param != "" && method == "GET" {
 		path = path + "?" + param
 		param = ""
@@ -90,4 +79,76 @@ func ComputeHmac256(message string, secret string) string {
 	h := hmac.New(sha256.New, key)
 	h.Write([]byte(message))
 	return hex.EncodeToString(h.Sum(nil))
+}
+
+func (c *Client) GetAccount() *Account {
+	return &Account{
+		client: c,
+	}
+}
+
+func (c *Client) GetBankAccount() *BankAccount {
+	return &BankAccount{
+		client: c,
+	}
+}
+
+func (c *Client) GetBorrow() *Borrow {
+	return &Borrow{
+		client: c,
+	}
+}
+
+func (c *Client) GetDeposit() *Deposit {
+	return &Deposit{
+		client: c,
+	}
+}
+
+func (c *Client) GetLeverage() *Leverage {
+	return &Leverage{
+		client: c,
+	}
+}
+
+func (c *Client) GetOrder() *Order {
+	return &Order{
+		client: c,
+	}
+}
+
+func (c *Client) GetOrderBook() *OrderBook {
+	return &OrderBook{
+		client: c,
+	}
+}
+
+func (c *Client) GetSend() *Send {
+	return &Send{
+		client: c,
+	}
+}
+
+func (c *Client) GetTicker() *Ticker {
+	return &Ticker{
+		client: c,
+	}
+}
+
+func (c *Client) GetTrade() *Trade {
+	return &Trade{
+		client: c,
+	}
+}
+
+func (c *Client) GetTransfer() *Transfer {
+	return &Transfer{
+		client: c,
+	}
+}
+
+func (c *Client) GetWithdraw() *Withdraw {
+	return &Withdraw{
+		client: c,
+	}
 }

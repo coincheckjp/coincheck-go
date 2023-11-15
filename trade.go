@@ -1,7 +1,7 @@
 package coincheck
 
 type Trade struct {
-	client *CoinCheck
+	client *Client
 }
 
 // 最新の取引履歴を取得できます。

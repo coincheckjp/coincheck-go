@@ -1,7 +1,7 @@
 package coincheck
 
 type Deposit struct {
-	client *CoinCheck
+	client *Client
 }
 
 // You Get Deposit history

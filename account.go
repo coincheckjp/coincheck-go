@@ -1,7 +1,7 @@
 package coincheck
 
 type Account struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Make sure a balance.

@@ -1,7 +1,7 @@
 package coincheck
 
 type Order struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Create a order object with given parameters.In live mode, this issues a transaction.

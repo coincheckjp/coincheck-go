@@ -1,7 +1,7 @@
 package coincheck
 
 type Leverage struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Get a leverage positions list.

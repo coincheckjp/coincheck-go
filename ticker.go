@@ -1,7 +1,7 @@
 package coincheck
 
 type Ticker struct {
-	client *CoinCheck
+	client *Client
 }
 
 // 各種最新情報を簡易に取得することができます。

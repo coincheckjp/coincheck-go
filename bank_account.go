@@ -1,7 +1,7 @@
 package coincheck
 
 type BankAccount struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Create a new BankAccount.

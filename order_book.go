@@ -1,7 +1,7 @@
 package coincheck
 
 type OrderBook struct {
-	client *CoinCheck
+	client *Client
 }
 
 // 板情報を取得できます。

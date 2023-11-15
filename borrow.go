@@ -1,7 +1,7 @@
 package coincheck
 
 type Borrow struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Create a new Borrow.

@@ -1,7 +1,7 @@
 package coincheck
 
 type Transfer struct {
-	client *CoinCheck
+	client *Client
 }
 
 // Transfer Balance to Leverage.
