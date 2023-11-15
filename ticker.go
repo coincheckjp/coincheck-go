@@ -5,6 +5,6 @@ type Ticker struct {
 }
 
 // 各種最新情報を簡易に取得することができます。
-func (a Ticker) all() string {
+func (a Ticker) All() string {
 	return a.client.Request("GET", "api/ticker", "")
 }
