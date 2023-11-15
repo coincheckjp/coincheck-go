@@ -1,4 +1,4 @@
-package main
+package coincheck
 
 func main() {
 	client := new(CoinCheck).NewClient("CTBjkbYihKmT-IHR", "DmkP3ChVjOjqieaX-jFnU4XxpSlSgT3M")

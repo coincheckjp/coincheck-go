@@ -1,4 +1,4 @@
-package main
+package coincheck
 
 type Order struct {
 	client *CoinCheck

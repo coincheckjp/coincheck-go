@@ -1,4 +1,4 @@
-package main
+package coincheck
 
 type Account struct {
 	client *CoinCheck
