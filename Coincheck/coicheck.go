@@ -8,28 +8,28 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"time"
 	"strings"
+	"time"
 )
 
 type CoinCheck struct {
-	accessKey string
-	secretKey string
-	account Account
+	accessKey    string
+	secretKey    string
+	account      Account
 	bank_account BankAccount
-	borrow Borrow
-	deposit Deposit
-	leverage Leverage
-	order Order
-	order_book OrderBook
-	send Send
-	ticker Ticker
-	trade Trade
-	transfer Transfer
-	withdraw Withdraw
+	borrow       Borrow
+	deposit      Deposit
+	leverage     Leverage
+	order        Order
+	order_book   OrderBook
+	send         Send
+	ticker       Ticker
+	trade        Trade
+	transfer     Transfer
+	withdraw     Withdraw
 }
 
-func (c CoinCheck) NewClient(accessKey string, secretKey string) CoinCheck{
+func (c CoinCheck) NewClient(accessKey string, secretKey string) CoinCheck {
 	c.accessKey = accessKey
 	c.secretKey = secretKey
 	c.account = Account{&c}
@@ -79,17 +79,15 @@ func (c CoinCheck) Request(method string, path string, param string) string {
 	return string(body)
 }
 
-//create nonce by milliseconds
+// create nonce by milliseconds
 func CreateNonce() int64 {
 	return time.Now().UnixNano() / (int64(time.Millisecond) / int64(time.Nanosecond))
 }
 
-//create signature
+// create signature
 func ComputeHmac256(message string, secret string) string {
 	key := []byte(secret)
 	h := hmac.New(sha256.New, key)
 	h.Write([]byte(message))
 	return hex.EncodeToString(h.Sum(nil))
 }
-
-

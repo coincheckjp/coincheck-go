@@ -11,7 +11,7 @@ func (a Order) create(param string) string {
 
 // cancel a created order specified by order id. Optional argument amount is to refund partially.
 func (a Order) cancel(id string) string {
-	return a.client.Request("DELETE", "api/exchange/orders/" + id, "")
+	return a.client.Request("DELETE", "api/exchange/orders/"+id, "")
 }
 
 // List charges filtered by params

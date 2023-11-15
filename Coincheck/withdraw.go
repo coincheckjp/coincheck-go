@@ -16,5 +16,5 @@ func (a Withdraw) all() string {
 
 // Transfer Balance from Leverage.
 func (a Withdraw) cancel(id string) string {
-	return a.client.Request("DELETE", "api/withdraws/" + id, "")
+	return a.client.Request("DELETE", "api/withdraws/"+id, "")
 }

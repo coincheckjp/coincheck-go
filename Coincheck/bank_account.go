@@ -16,5 +16,5 @@ func (a BankAccount) all() string {
 
 // Delete a BankAccount.
 func (a BankAccount) delete(id string) string {
-	return a.client.Request("DELETE", "api/bank_accounts/" + id, "")
+	return a.client.Request("DELETE", "api/bank_accounts/"+id, "")
 }

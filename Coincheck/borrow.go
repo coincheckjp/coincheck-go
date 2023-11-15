@@ -16,5 +16,5 @@ func (a Borrow) matches() string {
 
 // Based on this id, you can repay.
 func (a Borrow) repay(id string) string {
-	return a.client.Request("POST", "api/lending/borrows/" + id + "/repay", `{"id":"`+id+`"}`)
+	return a.client.Request("POST", "api/lending/borrows/"+id+"/repay", `{"id":"`+id+`"}`)
 }
