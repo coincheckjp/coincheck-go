@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -40,15 +41,22 @@ func (c *Client) Request(method string, path string, param string) (string, erro
 		path = path + "?" + param
 		param = ""
 	}
-	url := "https://coincheck.jp" + path
+	u, err := url.Parse("https://coincheck.jp")
+	if err != nil {
+		return "", err
+	}
+	u.Path = path
 	nonce := strconv.FormatInt(CreateNonce(), 10)
-	message := nonce + url + param
-	req := &http.Request{}
+	message := nonce + u.String() + param
+	var req *http.Request
 	if method == "POST" {
 		payload := strings.NewReader(param)
-		req, _ = http.NewRequest(method, url, payload)
+		req, err = http.NewRequest(method, u.String(), payload)
 	} else {
-		req, _ = http.NewRequest(method, url, nil)
+		req, err = http.NewRequest(method, u.String(), nil)
+	}
+	if err != nil {
+		return "", err
 	}
 	signature := ComputeHmac256(message, c.secretKey)
 	req.Header.Add("access-key", c.accessKey)

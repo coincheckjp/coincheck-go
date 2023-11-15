@@ -44,7 +44,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 残高
-						client.GetAccount().Balance()
+						result, err := client.GetAccount().Balance()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -54,7 +58,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// レバレッジアカウントの残高
-						client.GetAccount().LeverageBalance()
+						result, err := client.GetAccount().LeverageBalance()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -64,7 +72,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// アカウント情報
-						client.GetAccount().Info()
+						result, err := client.GetAccount().Info()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -80,7 +92,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 銀行口座一覧
-						client.GetBankAccount().All()
+						result, err := client.GetBankAccount().All()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -90,7 +106,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 銀行口座の登録
-						client.GetBankAccount().Create(`{"bank_name":"MUFG","branch_name":"tokyo", "bank_account_type":"toza", "number":"1234567", "name":"Danny"}`)
+						result, err := client.GetBankAccount().Create(`{"bank_name":"MUFG","branch_name":"tokyo", "bank_account_type":"toza", "number":"1234567", "name":"Danny"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -100,7 +120,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 銀行口座の削除
-						client.GetBankAccount().Delete("25621")
+						result, err := client.GetBankAccount().Delete("25621")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -116,7 +140,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// ビットコインの送金履歴
-						client.GetSend().All("currency=BTC")
+						result, err := client.GetSend().All("currency=BTC")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -126,7 +154,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// ビットコインの送金
-						client.GetSend().Create(`{"address":"1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY","amount":"0.0002"`)
+						result, err := client.GetSend().Create(`{"address":"1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY","amount":"0.0002"`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -142,7 +174,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// ビットコインの受け取り履歴
-						client.GetDeposit().All("currency=BTC")
+						result, err := client.GetDeposit().All("currency=BTC")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -152,7 +188,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// ビットコインの高速入金
-						client.GetDeposit().Fast("12345")
+						result, err := client.GetDeposit().Fast("12345")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -187,7 +227,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 注文の作詞絵
-						client.GetOrder().Create(`{"rate":"28500","amount":"0.00508771", "order_type":"buy", "pair":"btc_jpy"}`)
+						result, err := client.GetOrder().Create(`{"rate":"28500","amount":"0.00508771", "order_type":"buy", "pair":"btc_jpy"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -197,7 +241,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 注文のキャンセル
-						client.GetOrder().Cancel("12345")
+						result, err := client.GetOrder().Cancel("12345")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -207,7 +255,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 未決済の注文一覧
-						client.GetOrder().Opens()
+						result, err := client.GetOrder().Opens()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -217,7 +269,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 取引履歴
-						client.GetOrder().Transactions()
+						result, err := client.GetOrder().Transactions()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -252,7 +308,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// ポジション一覧
-						client.GetLeverage().Positions()
+						result, err := client.GetLeverage().Positions()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -268,7 +328,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 出金履歴
-						client.GetWithdraw().All()
+						result, err := client.GetWithdraw().All()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -278,7 +342,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 出金申請の作成
-						client.GetWithdraw().Create(`{"bank_account_id":"2222","amount":"50000", "currency":"JPY", "is_fast":"false"}`)
+						result, err := client.GetWithdraw().Create(`{"bank_account_id":"2222","amount":"50000", "currency":"JPY", "is_fast":"false"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -288,7 +356,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 出金申請のキャンセル
-						client.GetWithdraw().Cancel("12345")
+						result, err := client.GetWithdraw().Cancel("12345")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -304,7 +376,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 借入申請
-						client.GetBorrow().Create(`{"amount":"100","currency":"JPY"}`)
+						result, err := client.GetBorrow().Create(`{"amount":"100","currency":"JPY"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -314,7 +390,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 借入中一覧
-						client.GetBorrow().Matches()
+						result, err := client.GetBorrow().Matches()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -324,7 +404,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 返済
-						client.GetBorrow().Repay("1135")
+						result, err := client.GetBorrow().Repay("1135")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -340,7 +424,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// レバレッジアカウントへの振替
-						client.GetTransfer().ToLeverage(`{"amount":"100","currency":"JPY"}`)
+						result, err := client.GetTransfer().ToLeverage(`{"amount":"100","currency":"JPY"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -350,7 +438,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// レバレッジアカウントからの振替
-						client.GetTransfer().FromLeverage(`{"amount":"100","currency":"JPY"}`)
+						result, err := client.GetTransfer().FromLeverage(`{"amount":"100","currency":"JPY"}`)
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -360,7 +452,11 @@ var app = &cli.App{
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
 						// 返済
-						client.GetBorrow().Repay("1135")
+						result, err := client.GetBorrow().Repay("1135")
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
