@@ -4,7 +4,6 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -36,7 +35,7 @@ func NewClient(accessKey string, secretKey string) *Client {
 	return c
 }
 
-func (c *Client) Request(method string, path string, param string) string {
+func (c *Client) Request(method string, path string, param string) (string, error) {
 	if param != "" && method == "GET" {
 		path = path + "?" + param
 		param = ""
@@ -59,13 +58,15 @@ func (c *Client) Request(method string, path string, param string) string {
 	req.Header.Add("cache-control", "no-cache")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return ""
+		return "", err
 	}
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(string(body))
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return "", err
+	}
 
-	return string(body)
+	return string(body), nil
 }
 
 // create nonce by milliseconds

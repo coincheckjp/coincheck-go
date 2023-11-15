@@ -24,7 +24,11 @@ var app = &cli.App{
 					Usage: "show all tickers",
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
-						fmt.Println(client.GetTicker().All())
+						result, err := client.GetTicker().All()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -163,7 +167,11 @@ var app = &cli.App{
 					Usage: "show all trades",
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
-						fmt.Println(client.GetTrade().All())
+						result, err := client.GetTrade().All()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
@@ -224,7 +232,11 @@ var app = &cli.App{
 					Usage: "show all orderbooks",
 					Action: func(cCtx *cli.Context) error {
 						client := cCtx.App.Metadata["client"].(*coincheck.Client)
-						fmt.Println(client.GetOrderBook().All())
+						result, err := client.GetOrderBook().All()
+						if err != nil {
+							return err
+						}
+						fmt.Println(result)
 						return nil
 					},
 				},
