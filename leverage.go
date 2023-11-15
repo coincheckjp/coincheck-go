@@ -6,5 +6,5 @@ type Leverage struct {
 
 // Get a leverage positions list.
 func (a Leverage) Positions() (string, error) {
-	return a.client.Request("GET", "api/exchange/leverage/positions", "")
+	return a.client.Request("GET", "/api/exchange/leverage/positions", "")
 }

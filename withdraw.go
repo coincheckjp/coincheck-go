@@ -6,15 +6,15 @@ type Withdraw struct {
 
 // Transfer Balance to Leverage.
 func (a Withdraw) Create(param string) (string, error) {
-	return a.client.Request("POST", "api/withdraws", param)
+	return a.client.Request("POST", "/api/withdraws", param)
 }
 
 // Transfer Balance from Leverage.
 func (a Withdraw) All() (string, error) {
-	return a.client.Request("GET", "api/withdraws", "")
+	return a.client.Request("GET", "/api/withdraws", "")
 }
 
 // Transfer Balance from Leverage.
 func (a Withdraw) Cancel(id string) (string, error) {
-	return a.client.Request("DELETE", "api/withdraws/"+id, "")
+	return a.client.Request("DELETE", "/api/withdraws/"+id, "")
 }

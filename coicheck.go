@@ -40,7 +40,7 @@ func (c *Client) Request(method string, path string, param string) (string, erro
 		path = path + "?" + param
 		param = ""
 	}
-	url := "https://coincheck.jp/" + path
+	url := "https://coincheck.jp" + path
 	nonce := strconv.FormatInt(CreateNonce(), 10)
 	message := nonce + url + param
 	req := &http.Request{}
